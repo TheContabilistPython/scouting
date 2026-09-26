@@ -83,7 +83,7 @@ window.addEventListener("hashchange", () => window.goatcounter.count && window.g
   let lang = "pt";
   try { lang = { en: "en", es: "es" }[localStorage.getItem("idioma")] || "pt"; } catch (_) {}
   const say = (text) => (typeof text === "string" ? text : text[lang] || text.pt);
-  const LABELS = { pt: ["Trocar de site", "você está aqui"], en: ["Switch site", "you are here"], es: ["Cambiar de sitio", "estás aquí"] }[lang];
+  const LABELS = { pt: ["Trocar de site"], en: ["Switch site"], es: ["Cambiar de sitio"] }[lang];
 
   const style = document.createElement("style");
   style.textContent = `
@@ -97,9 +97,10 @@ window.addEventListener("hashchange", () => window.goatcounter.count && window.g
 .ooyl-sites[hidden] { display: none; }
 .ooyl-sites__kicker { margin: 2px 10px 8px; font: 600 11px/14px var(--font-sans, system-ui, sans-serif); letter-spacing: .12em;
   text-transform: uppercase; color: var(--accent, #c6f24e); }
-.ooyl-sites__item { display: grid; gap: 2px; padding: 8px 10px; border-left: 2px solid transparent; border-radius: 6px; text-decoration: none; }
+.ooyl-sites__item { display: grid; gap: 2px; padding: 8px 10px; border-radius: var(--radius-sm, 6px); text-decoration: none; }
 .ooyl-sites__item:hover, .ooyl-sites__item:focus-visible { background: var(--surface-hover, #161a20); outline: none; }
-.ooyl-sites__item.is-here { border-left-color: var(--accent, #c6f24e); }
+.ooyl-sites__item.is-here, .ooyl-sites__item.is-here:hover { background: var(--action, #c6f24e); }
+.ooyl-sites__item.is-here .ooyl-sites__name, .ooyl-sites__item.is-here .ooyl-sites__meta { color: var(--on-action, #0a0c0f); }
 .ooyl-sites__name { font: 600 14px/18px var(--font-sans, system-ui, sans-serif); color: var(--ink-strong, #fff); }
 .ooyl-sites__meta { font: 400 12px/16px var(--font-sans, system-ui, sans-serif); color: var(--ink-muted, #7f8995); }`;
   document.head.append(style);
@@ -122,7 +123,7 @@ window.addEventListener("hashchange", () => window.goatcounter.count && window.g
     name.className = "ooyl-sites__name";
     name.textContent = say(site.name);
     meta.className = "ooyl-sites__meta";
-    meta.textContent = site === here ? `${say(site.meta)} · ${LABELS[1]}` : say(site.meta);
+    meta.textContent = say(site.meta);  // the current site is filled with the action colour, as the lit page tab
     link.append(name, meta);
     menu.append(link);
     return link;
