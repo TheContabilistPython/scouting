@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scouting · Out of Your League</title>
+<link rel="icon" href="marca/favicon.ico" sizes="32x32">
+<link rel="icon" href="marca/favicon.svg" type="image/svg+xml">
+<script>
+  // The saved edition goes on before first paint, as in the dashboards (same localStorage key).
+  try {
+    var saved = { dark: "floodlight", light: "broadsheet", floodlight: "floodlight", broadsheet: "broadsheet" }[localStorage.getItem("tema")];
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
+  } catch (_) {}
+</script>
+<!-- The brand's design files (serie_b/ooyl/web/static), copied here by scouting/publicar.py. -->
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/views.css">
+<link rel="stylesheet" href="scouting.css">
+<script type="module" src="app.js"></script>
+<meta name="description" content="Scouting do Out of Your League: ranking por posição e função, jovens, comparação de jogadores e montagem de seleção com química e estilo de jogo, com dados do SofaScore.">
+<script>
+window.goatcounter = { path: () => location.pathname + location.hash };
+window.addEventListener("hashchange", () => window.goatcounter.count && window.goatcounter.count({ path: location.pathname + location.hash }));
+</script>
+<script data-goatcounter="https://ooyl.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+<body>
+<header class="ooyl-topbar">
+  <div class="ooyl-topbar__in">
+    <a class="ooyl-topbar__brand" href="#/ranking" title="Out of Your League">
+      <svg class="ooyl-mark" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true"><circle cx="26" cy="38" r="18" style="fill: none; stroke: var(--data-dot); stroke-width: 8"/><circle cx="51" cy="13" r="9" style="fill: var(--accent)"/></svg>
+      <span class="ooyl-topbar__title">
+        <span class="ooyl-kicker">Out of Your League</span>
+        <span class="ooyl-topbar__name">Scouting</span>
+        <span class="ooyl-topbar__meta" id="meta"></span>
+      </span>
+    </a>
+    <nav class="ooyl-topbar__nav" aria-label="Seções">
+      <div class="ooyl-tabs ooyl-tabs--line" id="main-tabs" role="tablist">
+        <button class="ooyl-tab" role="tab" data-view="ranking" aria-selected="true">Ranking</button>
+        <button class="ooyl-tab" role="tab" data-view="jovens" aria-selected="false">Jovens</button>
+        <button class="ooyl-tab" role="tab" data-view="comparar" aria-selected="false">Comparar</button>
+        <button class="ooyl-tab" role="tab" data-view="selecao" aria-selected="false">Seleção</button>
+      </div>
+    </nav>
+    <div class="ooyl-topbar__end">
+      <span class="ooyl-tag ooyl-tag--accent sc-local-only" title="Este é o painel local (scouting/painel.py)">Local</span>
+      <select class="lang-select" id="liga" aria-label="Liga" title="Liga"></select>
+      <button class="ooyl-btn ooyl-btn--ghost ooyl-btn--sm" id="theme" title="Alternar entre Floodlight (escuro) e Broadsheet (claro)">Tema</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="app">
+  <div class="empty">Carregando os dados...</div>
+</main>
+<footer class="sc-footer"><span class="sc-local-only">Painel local (scouting/painel.py): o site só muda quando scouting/publicar.py roda.</span>
+  <span>Dados do SofaScore. Percentis dentro da posição e da liga de cada jogador.</span></footer>
+</body>
+</html>
