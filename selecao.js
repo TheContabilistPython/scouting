@@ -7,7 +7,7 @@ import {
   roleName, playerLink, functionLabel, highlights, weakest, card, pageHead, playerRef, findRef, playerSearch,
 } from "./comum.js";
 
-const FORMATIONS = ["4-3-3", "4-2-3-1", "4-4-2", "4-1-4-1", "3-5-2", "3-4-3", "5-3-2"];
+export const FORMATIONS = ["4-3-3", "4-2-3-1", "4-4-2", "4-1-4-1", "3-5-2", "3-4-3", "5-3-2"];
 const VALUES = [["todos", "Qualquer valor"], ["300000", "Até € 300 mil"], ["1000000", "Até € 1 mi"], ["3000000", "Até € 3 mi"],
   ["10000000", "Até € 10 mi"]];
 const AGES = [["todas", "Qualquer idade"], ["21", "Até 21 anos"], ["23", "Até 23 anos"], ["25", "Até 25 anos"], ["28", "Até 28 anos"]];
@@ -37,7 +37,7 @@ function lineRoles(index, size, lines) {
   return size <= 2 ? fill("MEI", size) : ["PON", ...fill("MEI", size - 2), "PON"];
 }
 
-function formationSlots(formation) {
+export function formationSlots(formation) {
   const lines = formation.split("-").map(Number);
   const slots = [{ role: "GOL", line: 0, x: 0.5 }];
   lines.forEach((size, li) => lineRoles(li, size, lines).forEach((role, k) => slots.push({ role, line: li + 1, x: (k + 1) / (size + 1) })));
@@ -177,8 +177,8 @@ function linkScore(a, b) {  // 0 to 10, with the reasons
   return { score: Math.max(0, Math.min(10, score)), reasons };
 }
 
-function chemistry(refs) {
-  const found = links(local.sel.shape).filter(([i, j]) => refs[i] && refs[j])
+export function chemistry(refs, shape = local.sel.shape) {  // also the Draft's
+  const found = links(shape).filter(([i, j]) => refs[i] && refs[j])
     .map(([i, j]) => ({ i, j, ...linkScore(refs[i], refs[j]) }));
   const perSlot = refs.map((ref, i) => {
     const mine = found.filter((l) => l.i === i || l.j === i);
@@ -189,7 +189,7 @@ function chemistry(refs) {
 }
 
 const dotsFor = (value) => (value == null ? 0 : value >= 7 ? 3 : value >= 5.5 ? 2 : value >= 4 ? 1 : 0);
-const dots = (value) => el("span", { class: "sc-dots", title: value == null ? "sem ligações" : `química ${num(value, 1)} de 10` },
+export const dots = (value) => el("span", { class: "sc-dots", title: value == null ? "sem ligações" : `química ${num(value, 1)} de 10` },
   [0, 1, 2].map((k) => el("i", { class: k < dotsFor(value) ? "is-on" : null })));
 
 // ---- the team's style: each dimension is the eleven's mean percentile over its metrics (outfield players)

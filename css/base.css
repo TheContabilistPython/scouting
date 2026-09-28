@@ -34,7 +34,7 @@ code { font: 400 0.92em var(--font-mono); }
 .ooyl-btn:focus-visible, .ooyl-tab:focus-visible, select:focus-visible, input:focus-visible,
 .ooyl-toggle input:focus-visible + .ooyl-toggle__track, .ooyl-match:focus-visible, .ooyl-player:focus-visible,
 tr.row-link:focus-visible, .ooyl-bars__row.is-link:focus-visible, .ooyl-dotplot__row.is-link:focus-visible,
-summary:focus-visible, .team-row:focus-visible, .pick-row:focus-visible, .slot .link:focus-visible,
+summary:focus-visible, .team-row:focus-visible, .sel-row:focus-visible, .slot .link:focus-visible,
 .gallery a:focus-visible, .ooyl-topbar__brand:focus-visible, .ooyl-scoreboard__meta a:focus-visible {
   outline: none; box-shadow: var(--focus-ring);
 }

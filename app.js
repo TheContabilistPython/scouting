@@ -1,7 +1,8 @@
 // Scouting page: the ranking by position, the young players, each player's page, the comparison of two
 // players and the eleven built with chemistry and the team's style. Data: api/meta.json, api/ligas.json
 // and api/liga/{slug}.json, answered by painel.py on this PC and written as files by publicar.py.
-// Routes: #/ranking?pos=&fn=&idade=&min=&q=, #/jovens, #/jogador/{liga}/{id}, #/comparar?a=&b=, #/selecao.
+// Routes: #/ranking?pos=&fn=&idade=&min=&q=, #/jovens, #/jogador/{liga}/{id}, #/comparar?a=&b=, #/selecao. The Draft has
+// its own page (draft.html, draft-main.js) and its own site, /draft/.
 
 import {
   $, el, state, localGet, localSet, num, euros, ratingChip, pctChip, pctStep, chip, plain, GROUPS, metricIndex, metricShort,

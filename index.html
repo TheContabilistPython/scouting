@@ -60,11 +60,11 @@ window.addEventListener("hashchange", () => window.goatcounter.count && window.g
 <footer class="sc-footer"><span class="sc-local-only">Painel local (scouting/painel.py): o site só muda quando scouting/publicar.py roda.</span>
   <span>Dados do SofaScore. Percentis dentro da posição e da liga de cada jogador.</span></footer>
 <script>
-// Out of Your League: the switch between the sites of the domain (the leagues and the scouting), opened by
+// Out of Your League: the switch between the sites of the domain (the leagues, the scouting, the draft), opened by
 // hovering the brand at the top of the page, or by the small button next to it (touch screens, keyboard).
 // Each site's publisher puts this file inline in the published page, as it does the visit counter: the root
 // publicar.py (Série A), ooyl/publish/export.py (Série B and the engine's other leagues) and
-// scouting/publicar.py. Outside the domain's layout (a local dashboard served at /) it does nothing. A site
+// scouting/publicar.py (scouting and draft). Outside the domain's layout (a local dashboard served at /) it does nothing. A site
 // is listed only once its data answer, like the cards of the home page, so a league not yet published stays
 // out until it is; the answers are kept for the browser session.
 (() => {
@@ -76,6 +76,8 @@ window.addEventListener("hashchange", () => window.goatcounter.count && window.g
     { root: "/la-liga/", probe: "api/index.json", name: "La Liga", meta: { pt: "Espanha", en: "Spain", es: "España" } },
     { root: "/scouting/", probe: "api/ligas.json", name: "Scouting",
       meta: { pt: "Ranking, comparação e seleção", en: "Rankings, comparison and line-ups", es: "Ranking, comparación y selección" } },
+    { root: "/draft/", probe: "api/ligas.json", name: "Draft",
+      meta: { pt: "Monte um time com cartas e jogue a Copa", en: "Build a team of cards and play the cup", es: "Arma un equipo de cartas y juega la copa" } },
   ];
   const here = SITES.find((site) => site.probe && location.pathname.startsWith(site.root));
   const brand = document.querySelector(".ooyl-topbar__brand");
